@@ -8,11 +8,24 @@ const fs = require("fs");
 function readFile(filename, encoding) {
   fs.readFile(filename, encoding, (err, data) => {
     //TODO
+    const promise = new Promise(resolve,reject){
+      if(err){
+        reject(err);
+      }else{
+        resolve(data);
+      }
+    }
   });
 }
 readFile("./files/demofile.txt", "utf-8")
-    .then(...)
-});
+    .then(
+      (data)=>{
+        console.log(data);
+    },
+    (err)=>{
+      console.error(err);
+    })
+
 ```
 
 # Question 2

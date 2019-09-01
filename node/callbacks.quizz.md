@@ -6,9 +6,9 @@ Make it run without errors but you cannot change the location of the `let` state
 
 ```js
 function doAsyncTask(cb) {
-  cb();
+  cb(message);
 }
-doAsyncTask(_ => console.log(message));
+doAsyncTask(mes => console.log(mes));
 
 let message = "Callback Called";
 ```
@@ -22,6 +22,7 @@ const fs = require("fs");
 
 function readFileThenDo(next) {
   fs.readFile("./blah.nofile", (err, data) => {
+    if (err) throw err;
     next(data);
   });
 }
@@ -45,7 +46,12 @@ function readFileThenDo(next) {
   });
 }
 // Hint use try..catch
+try(data){
 readFileThenDo(data => {
   console.log(data);
 });
+}catch(err){
+  console.log(err)
+}
+
 ```
